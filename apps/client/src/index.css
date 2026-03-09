@@ -101,3 +101,66 @@ h2 {
   font-size: 0.85rem;
   margin-top: 0.5rem;
 }
+
+/* ── User Profile Card ── */
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  background: #334155;
+}
+
+.profile-avatar[data-role="mafia"]     { background: #7f1d1d; }
+.profile-avatar[data-role="detective"] { background: #3b0764; }
+.profile-avatar[data-role="doctor"]    { background: #14532d; }
+.profile-avatar[data-role="citizen"]   { background: #0c4a6e; }
+
+.profile-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.profile-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.profile-dead {
+  text-decoration: line-through;
+  color: #64748b;
+}
+
+.profile-alive-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+}
+
+.profile-role {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-role-desc {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}

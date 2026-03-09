@@ -3,6 +3,20 @@ import { Link } from "react-router-dom";
 import { getSocket } from "../socket.ts";
 import type { GameState, MyInfo } from "@mafia/shared";
 
+const ROLE_ICONS: Record<string, string> = {
+  MAFIA: "🔪",
+  DETECTIVE: "🔍",
+  DOCTOR: "💊",
+  CITIZEN: "👤",
+};
+
+const ROLE_DESCRIPTIONS: Record<string, string> = {
+  MAFIA: "Eliminate citizens at night",
+  DETECTIVE: "Investigate a player each night",
+  DOCTOR: "Protect a player from being killed",
+  CITIZEN: "Find and vote out the Mafia",
+};
+
 export default function GamePage() {
   const socket = getSocket();
   const [state, setState] = useState<GameState | null>(null);
@@ -110,16 +124,37 @@ export default function GamePage() {
           </div>
 
           {myInfo && (
-            <div className="card">
-              <h2>My Info</h2>
-              <div className="row">
-                <span>{myInfo.name}</span>
-                <span
-                  className={`badge ${myInfo.role.toLowerCase()}`}
-                >
-                  {myInfo.role}
+            <div className="card profile-card">
+              <div
+                className="profile-avatar"
+                data-role={myInfo.role.toLowerCase()}
+              >
+                <span className="profile-icon">
+                  {ROLE_ICONS[myInfo.role] ?? "❓"}
                 </span>
-                {!myInfo.alive && <span className="badge dead">Dead</span>}
+              </div>
+              <div className="profile-details">
+                <div className="profile-name">
+                  <span className={myInfo.alive ? "" : "profile-dead"}>
+                    {myInfo.name}
+                  </span>
+                  {!myInfo.alive && (
+                    <span className="badge dead" style={{ marginLeft: "0.5rem" }}>
+                      💀 Dead
+                    </span>
+                  )}
+                  {myInfo.alive && (
+                    <span className="profile-alive-dot" title="Alive" />
+                  )}
+                </div>
+                <div className="profile-role">
+                  <span className={`badge ${myInfo.role.toLowerCase()}`}>
+                    {myInfo.role}
+                  </span>
+                  <span className="profile-role-desc">
+                    {ROLE_DESCRIPTIONS[myInfo.role]}
+                  </span>
+                </div>
               </div>
             </div>
           )}

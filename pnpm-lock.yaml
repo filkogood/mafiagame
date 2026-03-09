@@ -97,10 +97,6 @@ importers:
         version: 5.9.3
 
   packages/shared:
-    dependencies:
-      socket.io:
-        specifier: ^4.7.5
-        version: 4.8.3
     devDependencies:
       typescript:
         specifier: ^5.4.5
